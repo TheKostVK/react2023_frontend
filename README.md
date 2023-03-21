@@ -7,7 +7,7 @@
 </div>
 
 
-<table>
+<table align="center">
 <tr align="center">Ссылки на проекты GitHub</tr>
 <tr>
 <th align="center"><a href="https://github.com/TheKostVK/react2023_frontend">Frontend</a></th>
