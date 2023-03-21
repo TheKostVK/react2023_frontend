@@ -14,13 +14,13 @@ export const Header = () => {
     <div className={styles.root}>
       <Container maxWidth="lg">
         <div className={styles.inner}>
-          <Link className={styles.logo} href="/">
+          <Link className={styles.logo} to="/">
             <div>cityPOST</div>
           </Link>
           <div className={styles.buttons}>
             {isAuth ? (
               <>
-                <Link href="/posts/create">
+                <Link to="/posts/create">
                   <Button variant="contained">Написать статью</Button>
                 </Link>
                 <Button onClick={onClickLogout} variant="contained" color="error">
@@ -29,10 +29,10 @@ export const Header = () => {
               </>
             ) : (
               <>
-                <Link href="/Login">
+                <Link to="/Login">
                   <Button variant="outlined">Войти</Button>
                 </Link>
-                <Link href="/registration">
+                <Link to="/registration">
                   <Button variant="contained">Создать аккаунт</Button>
                 </Link>
               </>
