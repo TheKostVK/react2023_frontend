@@ -14,11 +14,13 @@ export const FullPost = () => {
     React.useEffect(() => {
         axios.get(`/posts/${id}`).then(res => {
            setData(res.data);
+           console.log(res.data);
            setLoading(false);
         }).catch(err => {
             alert('Ошибка при получении поста')
         });
     }, []);
+
 
     if (isLoading) {
         return <Post isLoading={isLoading} isFullPost />;
