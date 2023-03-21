@@ -7,6 +7,15 @@
 </div>
 
 
+<table>
+<tr align="center">Ссылки на проекты GitHub</tr>
+<tr>
+<th align="center"><a href="https://github.com/TheKostVK/react2023_frontend">Frontend</a></th>
+<th align="center"><a href="https://github.com/TheKostVK/react2023_backend">Backend</a></th>
+</tr>
+</table>
+
+
 <table align="center">
 <tr>
 <th style="color: blueviolet; font-size: large">Frontend</th>
