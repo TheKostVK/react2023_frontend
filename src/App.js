@@ -1,24 +1,33 @@
 import Container from "@mui/material/Container";
-import {Routes} from "react-router-dom";
-
-import {Header} from "./components";
-import {Home, FullPost, Registration, AddPost, Login} from "./pages";
+import { Routes, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { Header } from "./components";
+import { Home, FullPost, Registration, AddPost, Login } from "./pages";
+import { fetchUAuthMe, selectIsAuth } from "./redux/slices/auth";
 
 function App() {
-    return (
-        <>
-            <Header/>
-            <Container maxWidth="lg">
-                <Routes>
-                    <Home/>
-                    {/*<FullPost />*/}
-                    {/*<AddPost />*/}
-                    {/*<Login />*/}
-                    {/*<Registration />*/}
-                </Routes>
-            </Container>
-        </>
-    );
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth);
+
+  React.useEffect(() => {
+    dispatch(fetchUAuthMe());
+  }, []);
+
+  return (
+    <>
+      <Header />
+      <Container maxWidth="lg">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/posts/:id" element={<FullPost />} />
+          <Route path="/add-post" element={<AddPost />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
+        </Routes>
+      </Container>
+    </>
+  );
 }
 
 export default App;
