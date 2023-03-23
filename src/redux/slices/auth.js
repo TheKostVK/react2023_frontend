@@ -1,15 +1,32 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from "../../axios";
 
-export const fetchUAuth = createAsyncThunk('auth/fetchUserData', async (params) => {
+export const fetchAuth = createAsyncThunk('auth/fetchAuth', async (params) => {
     const {data} = await axios.post('/auth/login', params);
     return data;
 });
 
-export const fetchUAuthMe = createAsyncThunk('auth/fetchUserDataMe', async (params) => {
-    const {data} = await axios.get('/auth/me');
-    return data;
+export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async (_, thunkAPI) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        return thunkAPI.rejectWithValue('Token not found');
+    }
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    };
+
+    try {
+        const { data } = await axios.get('/auth/me', config);
+        return data;
+    } catch (err) {
+        return thunkAPI.rejectWithValue(err.response.data.message);
+    }
 });
+
+
 
 const initialState = {
     data: null,
@@ -26,29 +43,29 @@ const authSlice = createSlice({
         },
     },
     extraReducers: {
-        [fetchUAuth.pending]: (state) => {
-            state.data = null;
+        [fetchAuth.pending]: (state) => {
             state.status = 'loading';
+            state.data = null;
         },
-        [fetchUAuth.fulfilled]: (state, action) => {
-            state.data = action.payload;
+        [fetchAuth.fulfilled]: (state, action) => {
             state.status = 'loaded';
+            state.data = action.payload;
         },
-        [fetchUAuth.rejected]: (state) => {
-            state.data = null;
+        [fetchAuth.rejected]: (state) => {
             state.status = 'error';
-        },
-        [fetchUAuthMe.pending]: (state) => {
             state.data = null;
+        },
+        [fetchAuthMe.pending]: (state) => {
             state.status = 'loading';
-        },
-        [fetchUAuthMe.fulfilled]: (state, action) => {
-            state.data = action.payload;
-            state.status = 'loaded';
-        },
-        [fetchUAuthMe.rejected]: (state) => {
             state.data = null;
+        },
+        [fetchAuthMe.fulfilled]: (state, action) => {
+            state.status = 'loaded';
+            state.data = action.payload;
+        },
+        [fetchAuthMe.rejected]: (state) => {
             state.status = 'error';
+            state.data = null;
         },
     },
 });

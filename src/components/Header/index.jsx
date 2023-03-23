@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
 import Button from '@mui/material/Button';
 
@@ -14,6 +14,7 @@ export const Header = () => {
     const onClickLogout = () => {
         if (window.confirm('Вы хотите выйти из аккаунта?')) {
             dispatch(logout());
+            window.localStorage.removeItem('token');
         }
     };
 
@@ -35,14 +36,14 @@ export const Header = () => {
                                 </Button>
                             </>
                         ) : (
-                            <>
+                            <div>
                                 <Link to="/Login">
                                     <Button variant="outlined">Войти</Button>
                                 </Link>
                                 <Link to="/registration">
                                     <Button variant="contained">Создать аккаунт</Button>
                                 </Link>
-                            </>
+                            </div>
                         )}
                     </div>
                 </div>
