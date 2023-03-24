@@ -1,5 +1,5 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 
 import styles from './Header.module.scss';
@@ -14,6 +14,7 @@ export const Header = () => {
     const onClickLogout = () => {
         if (window.confirm('Вы хотите выйти из аккаунта?')) {
             dispatch(logout());
+            window.localStorage.removeItem('token');
         }
     };
 
@@ -27,7 +28,7 @@ export const Header = () => {
                     <div className={styles.buttons}>
                         {isAuth ? (
                             <>
-                                <Link to="/posts/create">
+                                <Link to="/add-post">
                                     <Button variant="contained">Написать статью</Button>
                                 </Link>
                                 <Button onClick={onClickLogout} variant="contained" color="error">
@@ -35,14 +36,14 @@ export const Header = () => {
                                 </Button>
                             </>
                         ) : (
-                            <>
+                            <div>
                                 <Link to="/Login">
                                     <Button variant="outlined">Войти</Button>
                                 </Link>
                                 <Link to="/registration">
                                     <Button variant="contained">Создать аккаунт</Button>
                                 </Link>
-                            </>
+                            </div>
                         )}
                     </div>
                 </div>

@@ -8,7 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Navigate} from "react-router-dom";
 
 import styles from "./Login.module.scss";
-import {fetchUAuth, selectIsAuth} from "../../redux/slices/auth";
+import {fetchAuth, selectIsAuth} from "../../redux/slices/auth";
 
 export const Login = () => {
     const isAuth = useSelector(selectIsAuth);
@@ -21,7 +21,7 @@ export const Login = () => {
     });
 
     const onSubmit = async (values) => {
-        const data = await dispatch(fetchUAuth(values));
+        const data = await dispatch(fetchAuth(values));
 
         if (!data.payload) {
             return alert('Не удалось авторизоваться')
@@ -59,7 +59,7 @@ export const Login = () => {
                            helperText={errors.password?.message}
                            {...register('password', {required: 'Укажите пароль'})}
                            fullWidth/>
-                <Button type="submit" size="large" variant="contained" fullWidth>
+                <Button disabled={!isValid} type="submit" size="large" variant="contained" fullWidth>
                     Войти
                 </Button>
             </form>

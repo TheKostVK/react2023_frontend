@@ -1,13 +1,20 @@
 import axios from "axios";
 
+
+// Создаем экземпляр axios с базовыми настройками
 const instance = axios.create({
-   baseURL: 'http://localhost:4444'
+  baseURL: "http://localhost:4444"
 });
 
-instance.interceptors.request.use((config)=>{
-   config.headers.Authorizations = window.localStorage.getItem('token');
+// Добавляем interceptor для всех запросов
+instance.interceptors.request.use((config) => {
+  // Получаем токен авторизации из localStorage
+  const token = localStorage.getItem('token');
 
-   return config;
+  // Добавляем заголовок Authorization со значением "Bearer токен"
+  config.headers.Authorization = `Bearer ${token}`;
+
+  return config;
 });
 
 export default instance;
