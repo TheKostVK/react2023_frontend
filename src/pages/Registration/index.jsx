@@ -12,8 +12,12 @@ import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 
 export const Registration = () => {
+  const imageUrl = "";
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
+
+  const inputFileRef = React.useRef(null);
+
   const { register, handleSubmit, setError, formState: { errors, isValid } } = useForm({
     defaultValues: {
       userName: "",
@@ -37,9 +41,18 @@ export const Registration = () => {
     }
   };
 
+  const handleChangeFile = () => {
+
+  };
+
+  const onClickRemoveImage = () => {
+
+  };
+
   if (isAuth) {
     return <Navigate to={"/"} />;
-  };
+  }
+  ;
 
   return (
     <Paper classes={{ root: styles.root }}>
@@ -48,6 +61,20 @@ export const Registration = () => {
       </Typography>
       <div className={styles.avatar}>
         <Avatar sx={{ width: 100, height: 100 }} />
+      </div>
+      <div className={styles.avatar}>
+        <Button onClick={() => inputFileRef.current.click()} variant="outlined" size="small">
+          Загрузить аватар
+        </Button>
+        <input ref={inputFileRef} type="file" onChange={handleChangeFile} hidden />
+        {imageUrl && (
+          <Button variant="contained" color="error" onClick={onClickRemoveImage}>
+            Удалить
+          </Button>
+        )}
+        {imageUrl && (
+          <img className={styles.image} src={`http://localhost:4444${imageUrl}`} alt="Uploaded" />
+        )}
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
