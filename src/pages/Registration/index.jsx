@@ -73,7 +73,7 @@ export const Registration = () => {
           </Button>
         )}
         {imageUrl && (
-          <img className={styles.image} src={`http://localhost:4444${imageUrl}`} alt="Uploaded" />
+          <img className={styles.image} src={imageUrl} alt="Uploaded" />
         )}
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
