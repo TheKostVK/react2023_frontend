@@ -30,9 +30,7 @@ export const AddPost = () => {
     try {
       const formData = new FormData();
       const file = event.target.files[0];
-      const folder = "posts/preview/";
       formData.append("image", file);
-      formData.append("folder", folder);
       const { data } = await axios.post("/upload", formData);
       setImageUrl(data.url);
     } catch (err) {
@@ -106,7 +104,6 @@ export const AddPost = () => {
   if (!window.localStorage.getItem("token") && !isAuth) {
     return <Navigate to={"/"} />;
   }
-  ;
 
   return (
     <Paper style={{ padding: 30 }}>
