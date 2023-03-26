@@ -3,7 +3,7 @@ import axios from "axios";
 
 // Создаем экземпляр axios с базовыми настройками
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "https://react2023-backend.vercel.app/" // "http://localhost:4444"
+  baseURL: process.env.REACT_APP_API_URL ||  "https://react2023-backend.vercel.app/" // "http://localhost:4444"
 });
 
 // Добавляем interceptor для всех запросов

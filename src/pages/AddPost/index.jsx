@@ -34,6 +34,7 @@ export const AddPost = () => {
       formData.append("image", file);
       formData.append("savePath", savePath); // добавляем путь сохранения в форму
       const { data } = await axios.post("/upload", formData);
+      console.log(data);
       setImageUrl(data.url);
     } catch (err) {
       console.warn(err);
