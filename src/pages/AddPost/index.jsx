@@ -28,11 +28,11 @@ export const AddPost = () => {
 
   const handleChangeFile = async (event) => {
     try {
+      const savePath = "posts/preview/"
       const formData = new FormData();
       const file = event.target.files[0];
-      const folder = "posts/preview/";
       formData.append("image", file);
-      formData.append("folder", folder);
+      formData.append("savePath", savePath); // добавляем путь сохранения в форму
       const { data } = await axios.post("/upload", formData);
       setImageUrl(data.url);
     } catch (err) {
@@ -40,6 +40,7 @@ export const AddPost = () => {
       alert("Ошибка загрузки превью");
     }
   };
+
 
 
   const onClickRemoveImage = () => {
@@ -106,7 +107,6 @@ export const AddPost = () => {
   if (!window.localStorage.getItem("token") && !isAuth) {
     return <Navigate to={"/"} />;
   }
-  ;
 
   return (
     <Paper style={{ padding: 30 }}>
