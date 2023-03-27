@@ -37,9 +37,9 @@ export const Header = () => {
                   <Link to="/add-post">
                     <Button variant="contained">Написать статью</Button>
                   </Link>
-                  <Button onClick={onClickLogout} variant="contained" color="error">
-                    Выйти
-                  </Button>
+                  <Link to="/profile">
+                    <Button variant="contained">Профиль</Button>
+                  </Link>
                 </>
               ) : (
                 <div>
@@ -55,8 +55,8 @@ export const Header = () => {
           </div>
         </Container>
       </div>
-      <div style={{ backgroundСolor: "#fff", borderRadius: "8px", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", padding: 0, margin: 25 }}>
-        <Breadcrumbs aria-label="breadcrumb">
+      <div style={{ backgroundСolor: "#fff", borderRadius: "8px", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", margin: 25 }}>
+        <Breadcrumbs aria-label="breadcrumb" style={{ margin: 10 }}>
           <Link component={RouterLink} color="inherit" to="/">
             Home
           </Link>

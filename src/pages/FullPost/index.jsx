@@ -1,10 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import axios from "../axios";
+import axios from "../../axios";
 
-import { Post } from "../components/Post";
-import { Index } from "../components/AddComment";
-import { CommentsBlock } from "../components/CommentsBlock";
+import styles from "./FullPost.module.scss";
+import { Post } from "../../components/Post";
+import { Index } from "../../components/AddComment";
+import { CommentsBlock } from "../../components/CommentsBlock";
 import ReactMarkdown from "react-markdown";
 
 export const FullPost = () => {
@@ -39,8 +40,11 @@ export const FullPost = () => {
         tags={data.tags}
         isFullPost
       >
-        <ReactMarkdown children={data.text} />
+        <div className={styles.postText}>
+          <ReactMarkdown children={data.text} />
+        </div>
       </Post>
+
       <CommentsBlock
         items={[
           {
