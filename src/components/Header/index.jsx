@@ -15,13 +15,6 @@ export const Header = () => {
   const pathNames = location.pathname.split("/").filter((x) => x);
   const isAuth = useSelector(selectIsAuth);
 
-  const onClickLogout = () => {
-    if (window.confirm("Вы хотите выйти из аккаунта?")) {
-      dispatch(logout());
-      window.localStorage.removeItem("token");
-    }
-  };
-
   return (
     <>
       <div className={styles.root}>

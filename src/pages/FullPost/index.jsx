@@ -120,11 +120,9 @@ export const FullPost = () => {
                 Редактировать пост
               </Button>
             </Link>
-            <Link to={`/posts/${id}/edit`}>
-              <Button variant="contained" color="error">
+              <Button onClick={() => onClickRemove()} variant="contained" color="error">
                 Удалить пост
               </Button>
-            </Link>
           </div>
         </SideBlock>
       )}
