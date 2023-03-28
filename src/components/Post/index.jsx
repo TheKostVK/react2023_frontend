@@ -36,26 +36,9 @@ export const Post = ({
     return <PostSkeleton />;
   }
 
-  const onClickRemove = () => {
-    if (window.confirm("Вы действительно хотите удалить статью?")) {
-      dispatch(fetchRemovePost(id));
-    }
-  };
 
   return (
     <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
-      {isEditable && (
-        <div className={styles.editButtons}>
-          <Link to={`/posts/${id}/edit`}>
-            <IconButton color="primary">
-              <EditIcon />
-            </IconButton>
-          </Link>
-          <IconButton onClick={onClickRemove} color="secondary">
-            <DeleteIcon />
-          </IconButton>
-        </div>
-      )}
       {imageUrl && (
         <img
           className={clsx(styles.image, { [styles.imageFull]: isFullPost })}
