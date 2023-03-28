@@ -12,6 +12,7 @@ import { UserInfo } from "../UserInfo";
 import { PostSkeleton } from "./Skeleton";
 import { useDispatch } from "react-redux";
 import { fetchRemovePost } from "../../redux/slices/posts";
+import Button from "@mui/material/Button";
 
 export const Post = ({
                        id,
@@ -33,7 +34,7 @@ export const Post = ({
   }
 
   const onClickRemove = () => {
-    if (window.confirm('Вы действительно хотите удалить статью?')) {
+    if (window.confirm("Вы действительно хотите удалить статью?")) {
       dispatch(fetchRemovePost(id));
     }
   };
@@ -61,6 +62,7 @@ export const Post = ({
       )}
       <div className={styles.wrapper}>
         <UserInfo {...user} additionalText={createdAt} />
+
         <div className={styles.indention}>
           <h2 className={clsx(styles.title, { [styles.titleFull]: isFullPost })}>
             {isFullPost ? title : <Link to={`/posts/${id}`}>{title}</Link>}
@@ -83,7 +85,17 @@ export const Post = ({
               <span>{commentsCount}</span>
             </li>
           </ul>
+          {!isFullPost && (
+            <div className={styles.buttons}>
+              <Link to={`/posts/${id}/`}>
+                <Button variant="contained">
+                  Читать
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
+
       </div>
     </div>
   );

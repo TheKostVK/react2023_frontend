@@ -51,11 +51,10 @@ $blue: #4361ee;
 }
 
 .indention {
-  padding-left: 40px;
 }
 
 .title {
-  font-size: 28px;
+  font-size: 22px;
   margin: 0;
 
   a {
@@ -155,4 +154,14 @@ $blue: #4361ee;
   border-radius: 10px;
   opacity: 0;
   transition: all 0.15s ease-in-out;
+}
+
+.buttons {
+  button {
+    margin: 10px;
+  }
+
+  a {
+    text-decoration: none;
+  }
 }
