@@ -1,0 +1,22 @@
+.postText {
+  font-size: 16px;
+  max-width: 100%;
+  margin-top: 16px;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 600px) {
+  .postText {
+    font-size: 14px;
+  }
+}
+
+.buttons {
+  button {
+    margin: 10px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
