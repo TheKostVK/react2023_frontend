@@ -29,6 +29,9 @@ export const Post = ({
                        isEditable
                      }) => {
   const dispatch = useDispatch();
+  const createdAtNew = new Date(createdAt);
+  const formattedDate = `${createdAtNew.toLocaleDateString()} ${createdAtNew.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+
   if (isLoading) {
     return <PostSkeleton />;
   }
@@ -61,7 +64,7 @@ export const Post = ({
         />
       )}
       <div className={styles.wrapper}>
-        <UserInfo {...user} additionalText={createdAt} />
+        <UserInfo {...user} additionalText={formattedDate} />
 
         <div className={styles.indention}>
           <h2 className={clsx(styles.title, { [styles.titleFull]: isFullPost })}>
