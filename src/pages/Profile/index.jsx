@@ -36,8 +36,21 @@ export const Profile = () => {
             <div className="col-lg-4">
               <div className="card mb-4">
                 <div className="card-body text-center">
-                  <img src={userData.avatarUrl} alt="avatar"
-                       className="rounded-circle img-fluid" style={{ width: 150 }} />
+                  {userData.avatarUrl && (
+                    <>
+                      <img
+                        src={userData.avatarUrl}
+                        alt="avatar"
+                        className="rounded-circle img-fluid"
+                        style={{
+                          width: "150px",
+                          height: "150px",
+                          objectFit: "cover",
+                          objectPosition: "center",
+                        }}
+                      />
+                    </>
+                  )}
                   <h5 className="my-3">{userData.userName}</h5>
                   {/*<p className="text-muted mb-1">Full Stack Developer</p>*/}
                   {/*<p className="text-muted mb-4">Bay Area, San Francisco, CA</p>*/}
