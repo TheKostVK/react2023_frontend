@@ -1,5 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from "../../axios";
+import instance from "../../axios";
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
     const {data} = await axios.get('/posts');
@@ -14,6 +15,17 @@ export const fetchTags = createAsyncThunk('posts/fetchTags', async () => {
 export const fetchRemovePost = createAsyncThunk('posts/fetchRemovePost', async (id) => {
     await axios.delete(`/posts/${id}`);
 });
+
+// Функция получения новых постов с сервера на основе сравнения id последних постов клиента и сервера
+export const fetchNewPosts = createAsyncThunk(
+  "posts/fetchNewPosts",
+  async (lastPostId) => {
+      const response = await instance.get(`/api/posts?lastPostId=${lastPostId}`);
+      const newPosts = response.data;
+      return newPosts.length ? newPosts : null;
+  }
+);
+
 
 const initialState = {
     posts: {

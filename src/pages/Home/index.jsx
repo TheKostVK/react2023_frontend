@@ -18,7 +18,6 @@ export const Home = () => {
 
   React.useEffect(() => {
     dispatch(fetchPosts());
-    dispatch(fetchTags());
   }, []);
 
 
@@ -40,7 +39,7 @@ export const Home = () => {
       {/*  <Index />*/}
       {/*</div>*/}
       <div>
-        {(isPostsLoading ? [...Array(2)] : posts.items).map((obj, index) =>
+        {(isPostsLoading ? [...Array(1)] : posts.items).map((obj, index) =>
           isPostsLoading ? (
             <Post key={index} isLoading={true} />
           ) : (
@@ -58,7 +57,6 @@ export const Home = () => {
             />
           ))}
       </div>
-
     </>
   );
 };

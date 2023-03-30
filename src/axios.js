@@ -1,20 +1,25 @@
 import axios from "axios";
 
-
-// Создаем экземпляр axios с базовыми настройками
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL ||  "https://react2023-backend.vercel.app/" // "http://localhost:4444"
+  baseURL: process.env.REACT_APP_API_URL || "https://react2023-backend.vercel.app/" // "http://localhost:4444" ,
 });
 
-// Добавляем interceptor для всех запросов
 instance.interceptors.request.use((config) => {
-  // Получаем токен авторизации из localStorage
-  const token = localStorage.getItem('token');
-
-  // Добавляем заголовок Authorization со значением "Bearer токен"
+  const token = localStorage.getItem("token");
   config.headers.Authorization = `Bearer ${token}`;
-
   return config;
 });
+
+instance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response && error.response.data) {
+      throw new Error(error.response.data.message || "Что-то пошло не так");
+    }
+    throw error;
+  }
+);
 
 export default instance;

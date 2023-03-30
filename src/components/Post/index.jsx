@@ -1,18 +1,15 @@
 import React from "react";
 import clsx from "clsx";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Clear";
-import EditIcon from "@mui/icons-material/Edit";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import EyeIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import CommentIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
-import { Link } from "react-router-dom";
+
 
 import styles from "./Post.module.scss";
 import { UserInfo } from "../UserInfo";
 import { PostSkeleton } from "./Skeleton";
-import { useDispatch } from "react-redux";
-import { fetchRemovePost } from "../../redux/slices/posts";
-import Button from "@mui/material/Button";
 
 export const Post = ({
                        id,
@@ -71,17 +68,7 @@ export const Post = ({
               <span>{commentsCount}</span>
             </li>
           </ul>
-          {!isFullPost && (
-            <div className={styles.buttons}>
-              <Link to={`/posts/${id}/`}>
-                <Button variant="contained">
-                  Читать
-                </Button>
-              </Link>
-            </div>
-          )}
         </div>
-
       </div>
     </div>
   );
