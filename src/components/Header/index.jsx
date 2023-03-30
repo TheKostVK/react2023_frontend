@@ -112,12 +112,12 @@ export const Header = () => {
                     display: { xs: "block", md: "none" }
                   }}
                 >
-                  <MenuItem key="testPage1" onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">testPage1</Typography>
-                  </MenuItem>
-                  <MenuItem key="testPage2" onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">testPage2</Typography>
-                  </MenuItem>
+                  {/*<MenuItem key="testPage1" onClick={handleCloseNavMenu}>*/}
+                  {/*  <Typography textAlign="center">testPage1</Typography>*/}
+                  {/*</MenuItem>*/}
+                  {/*<MenuItem key="testPage2" onClick={handleCloseNavMenu}>*/}
+                  {/*  <Typography textAlign="center">testPage2</Typography>*/}
+                  {/*</MenuItem>*/}
                 </Menu>
               </Box>
               <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
@@ -142,20 +142,20 @@ export const Header = () => {
                 </Link>
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                <Button
-                  key="testPage1"
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  testPage1
-                </Button>
-                <Button
-                  key="testPage2"
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  testPage2
-                </Button>
+                {/*<Button*/}
+                {/*  key="testPage1"*/}
+                {/*  onClick={handleCloseNavMenu}*/}
+                {/*  sx={{ my: 2, color: "white", display: "block" }}*/}
+                {/*>*/}
+                {/*  testPage1*/}
+                {/*</Button>*/}
+                {/*<Button*/}
+                {/*  key="testPage2"*/}
+                {/*  onClick={handleCloseNavMenu}*/}
+                {/*  sx={{ my: 2, color: "white", display: "block" }}*/}
+                {/*>*/}
+                {/*  testPage2*/}
+                {/*</Button>*/}
               </Box>
 
               <Box sx={{ flexGrow: 0 }}>

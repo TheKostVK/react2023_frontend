@@ -13,10 +13,10 @@ import axios from "../../axios";
 export const Registration = () => {
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
-  const [userName, setUserName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [avatarUrl, setAvatarUrl] = useState();
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [avatarUrl, setAvatarUrl] = useState("");
 
   const inputFileRef = React.useRef(null);
 

@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Post } from "../../components/Post";
-import { fetchPosts, fetchTags } from "../../redux/slices/posts";
+import { fetchPosts } from "../../redux/slices/posts";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { selectIsAuth } from "../../redux/slices/auth";
