@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "https://react2023-backend.vercel.app/" // "http://localhost:4444" ,
+  baseURL: process.env.REACT_APP_API_URL || "https://react2023-backend.vercel.app/"  ,
 });
 
 instance.interceptors.request.use((config) => {

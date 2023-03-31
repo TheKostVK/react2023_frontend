@@ -7,15 +7,28 @@ import Button from "@mui/material/Button";
 import styles from "./Profile.module.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { Post } from "../../components/Post";
 import { logout, selectIsAuth } from "../../redux/slices/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
+import {fetchUserPosts} from "../../redux/slices/posts";
 
 
 export const Profile = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
+  const userPosts  = useSelector((state) => state.userPosts);
   const userData = useSelector(state => state.auth.data);
+
+  const isPostsLoading = userPosts && (userPosts.status === "loading" || true);
+
+  // React.useEffect(() => {
+  //   if (userData && userData._id) {
+  //     dispatch(fetchUserPosts(userData._id));
+  //   }
+  // }, [userData]);
+
 
   if (!isAuth) {
     return <Navigate to={"/login"} />;
@@ -35,20 +48,33 @@ export const Profile = () => {
           <div className="row">
             <div className="col-lg-4">
               <div className="card mb-4">
-                <div className="card-body text-center">
-                  {userData.avatarUrl && (
+                <div className="card-body text-center" style={{justifyContent: "center"}}>
+                  {userData.avatarUrl ? (
                     <>
-                      <img
+                      <Avatar
+                        className="rounded-circle img-fluid"
                         src={userData.avatarUrl}
                         alt="avatar"
-                        className="rounded-circle img-fluid"
                         style={{
                           width: "150px",
                           height: "150px",
+                          margin: "auto",
                           objectFit: "cover",
                           objectPosition: "center",
-                        }}
-                      />
+                        }}  />
+                    </>
+                  ) : (
+                    <>
+                      <Avatar
+                        className="rounded-circle img-fluid"
+                        src="/broken-image.jpg"
+                        style={{
+                          width: "150px",
+                          height: "150px",
+                          margin: "auto",
+                          objectFit: "cover",
+                          objectPosition: "center",
+                        }} />
                     </>
                   )}
                   <h5 className="my-3">{userData.userName}</h5>
@@ -138,6 +164,25 @@ export const Profile = () => {
                   {/*</div>*/}
                 </div>
               </div>
+              {/*<div>*/}
+              {/*  {(isPostsLoading ? [...Array(1)] : userPosts.items).map((post, index) =>*/}
+              {/*    isPostsLoading ? (*/}
+              {/*      <Post key={index} isLoading={true} />*/}
+              {/*    ) : (*/}
+              {/*      <Post*/}
+              {/*        id={post._id}*/}
+              {/*        title={post.title}*/}
+              {/*        imageUrl={post.imageUrl}*/}
+              {/*        user={post.user}*/}
+              {/*        createdAt={post.createdAt}*/}
+              {/*        viewsCount={post.viewsCount}*/}
+              {/*        commentsCount={3}*/}
+              {/*        tags={post.tags}*/}
+              {/*        isLoading={isPostsLoading}*/}
+              {/*        isEditable={post.user._id === userData?._id}*/}
+              {/*      />*/}
+              {/*    ))}*/}
+              {/*</div>*/}
               {/*<div className="row">*/}
               {/*  <div className="col-md-6">*/}
               {/*    <div className="card mb-4 mb-md-0">*/}

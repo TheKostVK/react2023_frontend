@@ -73,40 +73,40 @@ export const FullPost = () => {
               <TableBody>
                 <TableRow key="RowPostID" sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                   <TableCell component="th" scope="row">
-                    ID post
+                    ID
                   </TableCell>
                   <TableCell align="right">{data._id}</TableCell>
                 </TableRow>
                 <TableRow key="RowPostUserCreator" sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                           style={{ backgroundColor: "slategrey" }}>
                   <TableCell component="th" scope="row">
-                    Post user creator
+                    Автор
                   </TableCell>
                   <TableCell align="right">{data.user.userName}</TableCell>
                 </TableRow>
                 <TableRow key="RowPostDateOfCreation" sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                   <TableCell component="th" scope="row">
-                    Post date of creation
+                    Дата публикации
                   </TableCell>
                   <TableCell align="right">{data.createdAt}</TableCell>
                 </TableRow>
                 <TableRow key="RowPostViewsCount" sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                           style={{ backgroundColor: "slategrey" }}>
                   <TableCell component="th" scope="row">
-                    Post views count
+                    Просмотры
                   </TableCell>
                   <TableCell align="right">{data.viewsCount}</TableCell>
                 </TableRow>
                 <TableRow key="RowPostCommentsCount" sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                   <TableCell component="th" scope="row">
-                    Post comments count
+                    Комментраии
                   </TableCell>
                   <TableCell align="right">{3}</TableCell>
                 </TableRow>
                 <TableRow key="RowPostTags" sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                           style={{ backgroundColor: "slategrey" }}>
                   <TableCell component="th" scope="row">
-                    Post tags
+                    Тэги
                   </TableCell>
                   <TableCell align="right">{data.tags}</TableCell>
                 </TableRow>

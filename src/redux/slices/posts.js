@@ -16,7 +16,16 @@ export const fetchRemovePost = createAsyncThunk('posts/fetchRemovePost', async (
     await axios.delete(`/posts/${id}`);
 });
 
-// Функция получения новых постов с сервера на основе сравнения id последних постов клиента и сервера
+
+// Создаем thunk для получения статей одного пользователя по его id
+export const fetchUserPosts = createAsyncThunk("posts/fetchUserPosts", async (userId) => {
+      const { data } = await axios.get(`/posts/user/${userId}`);
+      return data;
+  }
+);
+
+
+// Запрос на получения новых постов с сервера на основе сравнения id последнего поста клиента и сервера
 export const fetchNewPosts = createAsyncThunk(
   "posts/fetchNewPosts",
   async (lastPostId) => {
@@ -36,6 +45,10 @@ const initialState = {
         items: [],
         status: 'loading',
     },
+    userPosts: {
+        items: [],
+        status: 'loading',
+    }
 };
 
 
@@ -78,6 +91,20 @@ const postsSlice = createSlice({
         },
         [fetchRemovePost.rejected]: (state) => {
             state.posts.status = 'error';
+        },
+
+        // userPostById
+        [fetchUserPosts.pending]: (state) => {
+            state.userPosts.items = [];
+            state.status = "loading";
+        },
+        [fetchUserPosts.fulfilled]: (state, action) => {
+            state.status = "succeeded";
+            state.userPosts.items = action.payload;
+        },
+        [fetchUserPosts.rejected]: (state, action) => {
+            state.status = "failed";
+            state.error = action.error.message;
         },
     },
 });
